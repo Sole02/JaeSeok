@@ -13,7 +13,7 @@ public class GradeCalculator {
         double average = 0.0;
         average = (double) total / scores.length;
 
-        System.out.println("평균 점수:" + average + "점");
+        System.out.println(average + "점");
 
         if (average >= 90) {
             System.out.println("A급");
