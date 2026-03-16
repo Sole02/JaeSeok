@@ -7,5 +7,3 @@
 라인 6
 
 dummy text1
-
-dummy text2
