@@ -1,9 +1,13 @@
 package calculator_2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Calculator {
 
-
 // 속성
+    List<Integer> results = new ArrayList<>();
+
     int num1;
     char op;
     int num2;
@@ -21,12 +25,15 @@ public class Calculator {
         switch (this.op) {
             case '+':
                 result = num1 + num2;
+                results.add(result);
                 break;
             case '-':
                 result = num1 - num2;
+                results.add(result);
                 break;
             case '*':
                 result = num1 * num2;
+                results.add(result);
                 break;
             case '/':
                 if (num2 == 0) {
@@ -34,6 +41,7 @@ public class Calculator {
                     return 0;
                 }
                 result = num1 / num2;
+                results.add(result);
                 break;
             default:
         }
