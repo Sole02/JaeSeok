@@ -7,6 +7,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
+        Calculator calculator = new Calculator();
+
         while (true) {
             System.out.print("숫자를 입력하세요.");
             int num1 = input.nextInt();
@@ -15,9 +17,7 @@ public class Main {
             System.out.print("숫자를 입력하세요.");
             int num2 = input.nextInt();
 
-            Calculator calculator = new Calculator(num1, op, num2);
-
-            int result = calculator.calculator();
+            int result = calculator.calculator(num1, op, num2);
             System.out.println("결과: " + result);
 
             System.out.println("계속하시려면 아무 키를 입력, 종료하시려면 'exit'를 입력하세요.");

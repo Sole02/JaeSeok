@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-
 // 속성
     List<Integer> results = new ArrayList<>();
 
@@ -14,15 +13,12 @@ public class Calculator {
     int result;
 
 // 생성자
-    public Calculator(int num1, char op, int num2) {
-        this.num1 = num1;
-        this.op = op;
-        this.num2 = num2;
+    public Calculator() {
     }
 
 // 기능
-    public int calculator() {
-        switch (this.op) {
+    public int calculator(int num1, char op, int num2) {
+        switch (op) {
             case '+':
                 result = num1 + num2;
                 results.add(result);
