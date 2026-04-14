@@ -1,0 +1,43 @@
+package com.example.movieapp.controller;
+
+import com.example.movieapp.dto.*;
+import com.example.movieapp.service.MovieService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+public class MovieController {
+
+    private final MovieService movieService;
+
+    @PostMapping("/movies")
+    public ResponseEntity<CreateMovieResponse> createMovie(@RequestBody CreateMovieRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(movieService.save(request));
+    }
+
+    @GetMapping("/movies/{movieId}")
+    public ResponseEntity<GetMovieResponse> getMovies(@PathVariable Long movieId) {
+        return ResponseEntity.status(HttpStatus.OK).body(movieService.findOne(movieId));
+    }
+
+    @GetMapping("/movies")
+    public ResponseEntity<List<GetMovieResponse>> getMovies() {
+        return ResponseEntity.status(HttpStatus.OK).body(movieService.findAll());
+    }
+
+    @PutMapping("/movies/{movieId}")
+    public ResponseEntity<UpdateMovieResponse> updateMovie(@PathVariable Long movieId, @RequestBody UpdateMovieRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(movieService.updateTitle(movieId, request));
+    }
+
+    @DeleteMapping("/movies/{movieId}")
+    public ResponseEntity<Void> deleteMovie(@PathVariable Long movieId) {
+        movieService.delete(movieId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+}
