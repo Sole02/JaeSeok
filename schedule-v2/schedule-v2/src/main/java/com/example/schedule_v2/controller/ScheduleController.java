@@ -1,6 +1,9 @@
 package com.example.schedule_v2.controller;
 
+import com.example.schedule_v2.dto.request.ScheduleCreateRequestDto;
+import com.example.schedule_v2.dto.response.ScheduleCreateResponseDto;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +20,6 @@ public class ScheduleController {
 
     // 일정 생성
     @PostMapping
-    public void createSchedule () {
+    public ScheduleCreateResponseDto createSchedule (@RequestBody ScheduleCreateRequestDto requestDto) {
     }
 }
