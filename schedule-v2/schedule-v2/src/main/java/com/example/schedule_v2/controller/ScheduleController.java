@@ -3,10 +3,7 @@ package com.example.schedule_v2.controller;
 import com.example.schedule_v2.dto.request.ScheduleCreateRequestDto;
 import com.example.schedule_v2.dto.response.ScheduleCreateResponseDto;
 import com.example.schedule_v2.service.ScheduleService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/schedule")
@@ -26,4 +23,7 @@ public class ScheduleController {
     public ScheduleCreateResponseDto createSchedule (@RequestBody ScheduleCreateRequestDto requestDto) {
         return scheduleService.createSchedule(requestDto);
     }
+    // 일정 조회
+    @GetMapping
+    public void getSchedule() {}
 }
