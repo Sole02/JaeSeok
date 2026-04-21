@@ -5,6 +5,9 @@ import com.example.schedule_v2.dto.response.ScheduleCreateResponseDto;
 import com.example.schedule_v2.service.ScheduleService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
@@ -20,10 +23,13 @@ public class ScheduleController {
 
     // 일정 생성
     @PostMapping
-    public ScheduleCreateResponseDto createSchedule (@RequestBody ScheduleCreateRequestDto requestDto) {
+    public ScheduleCreateResponseDto createSchedule(@RequestBody ScheduleCreateRequestDto requestDto) {
         return scheduleService.createSchedule(requestDto);
     }
+
     // 일정 조회
     @GetMapping
-    public void getSchedule() {}
+    public List<ScheduleCreateResponseDto> getAllSchedules() {
+        return scheduleService.getAllSchedules();
+    }
 }
