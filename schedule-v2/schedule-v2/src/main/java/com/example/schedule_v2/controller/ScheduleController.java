@@ -2,6 +2,7 @@ package com.example.schedule_v2.controller;
 
 import com.example.schedule_v2.dto.request.ScheduleCreateRequestDto;
 import com.example.schedule_v2.dto.response.ScheduleCreateResponseDto;
+import com.example.schedule_v2.dto.response.ScheduleReadResponseDto;
 import com.example.schedule_v2.service.ScheduleService;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,9 +28,13 @@ public class ScheduleController {
         return scheduleService.createSchedule(requestDto);
     }
 
-    // 일정 조회
+    // 다건 일정 조회
     @GetMapping
-    public List<ScheduleCreateResponseDto> getAllSchedules() {
+    public List<ScheduleReadResponseDto> getAllSchedules() {
         return scheduleService.getAllSchedules();
     }
+
+    // 단건 일정 조회
+    @GetMapping("/{id}")
+    public void getSchedule() {}
 }
