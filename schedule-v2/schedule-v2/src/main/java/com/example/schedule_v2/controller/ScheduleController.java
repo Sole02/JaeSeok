@@ -1,8 +1,10 @@
 package com.example.schedule_v2.controller;
 
 import com.example.schedule_v2.dto.request.ScheduleCreateRequestDto;
+import com.example.schedule_v2.dto.request.ScheduleUpdateRequestDto;
 import com.example.schedule_v2.dto.response.ScheduleCreateResponseDto;
 import com.example.schedule_v2.dto.response.ScheduleReadResponseDto;
+import com.example.schedule_v2.dto.response.ScheduleUpdateResponseDto;
 import com.example.schedule_v2.service.ScheduleService;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +44,5 @@ public class ScheduleController {
 
     // 일정 수정
     @PutMapping("/{id}")
-    public void updateSchedule() {}
+    public ScheduleUpdateResponseDto updateSchedule(@PathVariable Long id, @RequestBody ScheduleUpdateRequestDto requestDto) {}
 }
