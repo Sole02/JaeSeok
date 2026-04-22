@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ScheduleService {
@@ -35,22 +36,28 @@ public class ScheduleService {
     }
     // 다건 조회
     public List<ScheduleReadResponseDto> getAllSchedules() {
-        // 전체 목록 조회하기
-        List<Schedule> foundSchedulesList = scheduleRepository.findAll();
-        // dto 리스트 만들기
-        List<ScheduleReadResponseDto> scheduleDtoList = new ArrayList<>();
-        // 루프 (꺼낼타입 변수명 : 목록) {}
-        for (Schedule schedule : foundSchedulesList) {
-            // 데이터 꺼내기
-            Long id = schedule.getId();
-            String title = schedule.getTitle();
-            String content = schedule.getContent();
-            // dto 만들기
-            ScheduleReadResponseDto scheduleDto = new ScheduleReadResponseDto(id, title, content);
-            // 리스트에 담기
-            scheduleDtoList.add(scheduleDto);
-        }
-        // 반환
+        // stream 방식
+        List<ScheduleReadResponseDto> scheduleDtoList = scheduleRepository.findAll().stream()
+              .map(schedule -> new ScheduleReadResponseDto(schedule.getId(), schedule.getTitle(), schedule.getContent()))
+              .collect(Collectors.toList());
         return scheduleDtoList;
+
+//        // 전체 목록 조회하기
+//        List<Schedule> foundSchedulesList = scheduleRepository.findAll();
+//        // dto 리스트 만들기
+//        List<ScheduleReadResponseDto> scheduleDtoList = new ArrayList<>();
+//        // for 루프 (꺼낼타입 변수명 : 목록) {}
+//        for (Schedule schedule : foundSchedulesList) {
+//            // 데이터 꺼내기
+//            Long id = schedule.getId();
+//            String title = schedule.getTitle();
+//            String content = schedule.getContent();
+//            // dto 만들기
+//            ScheduleReadResponseDto scheduleDto = new ScheduleReadResponseDto(id, title, content);
+//            // 리스트에 담기
+//            scheduleDtoList.add(scheduleDto);
+//        }
+//        // 반환
+//        return scheduleDtoList;
     }
 }
