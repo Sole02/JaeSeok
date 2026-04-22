@@ -6,6 +6,7 @@ import com.example.schedule_v2.dto.response.ScheduleReadResponseDto;
 import com.example.schedule_v2.entity.Schedule;
 import com.example.schedule_v2.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,8 @@ public class ScheduleService {
     }
 
     // 기능
+    // 생성
+    @Transactional
     public ScheduleCreateResponseDto createSchedule (ScheduleCreateRequestDto requestDto) {
         String foundTitle = requestDto.getTitle();
         String foundContent = requestDto.getContent();
@@ -35,13 +38,13 @@ public class ScheduleService {
         return result;
     }
     // 다건 조회
+    @Transactional(readOnly = true)
     public List<ScheduleReadResponseDto> getAllSchedules() {
         // stream 방식
         List<ScheduleReadResponseDto> scheduleDtoList = scheduleRepository.findAll().stream()
-              .map(schedule -> new ScheduleReadResponseDto(schedule.getId(), schedule.getTitle(), schedule.getContent()))
-              .collect(Collectors.toList());
+                .map(schedule -> new ScheduleReadResponseDto(schedule.getId(), schedule.getTitle(), schedule.getContent()))
+                .collect(Collectors.toList());
         return scheduleDtoList;
-
 //        // 전체 목록 조회하기
 //        List<Schedule> foundSchedulesList = scheduleRepository.findAll();
 //        // dto 리스트 만들기
@@ -59,5 +62,19 @@ public class ScheduleService {
 //        }
 //        // 반환
 //        return scheduleDtoList;
+    }
+    // 단건 조회
+    @Transactional(readOnly = true)
+    public ScheduleReadResponseDto getSchedule(Long id) {
+        // id로 DB에서 단건 조회
+        Schedule foundSchedule = scheduleRepository.findById(id).orElseThrow();
+        // 데이터 꺼내기
+        Long foundId = foundSchedule.getId();
+        String foundTitle = foundSchedule.getTitle();
+        String foundContent = foundSchedule.getContent();
+        // ResponseDto 만들기
+        ScheduleReadResponseDto scheduleDto = new ScheduleReadResponseDto(foundId, foundTitle, foundContent);
+        // 반환
+        return scheduleDto;
     }
 }
