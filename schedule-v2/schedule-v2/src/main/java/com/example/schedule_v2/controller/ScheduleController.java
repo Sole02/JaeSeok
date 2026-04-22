@@ -36,5 +36,5 @@ public class ScheduleController {
 
     // 단건 일정 조회
     @GetMapping("/{id}")
-    public void getSchedule() {}
+    public ScheduleReadResponseDto getSchedule(@PathVariable Long id) {}
 }
