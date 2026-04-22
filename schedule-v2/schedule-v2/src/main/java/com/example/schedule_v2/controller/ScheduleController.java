@@ -39,4 +39,8 @@ public class ScheduleController {
     public ScheduleReadResponseDto getSchedule(@PathVariable Long id) {
         return scheduleService.getSchedule(id);
     }
+
+    // 일정 수정
+    @PutMapping("/{id}")
+    public void updateSchedule() {}
 }
