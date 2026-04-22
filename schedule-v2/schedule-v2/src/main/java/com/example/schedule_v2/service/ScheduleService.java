@@ -1,8 +1,10 @@
 package com.example.schedule_v2.service;
 
 import com.example.schedule_v2.dto.request.ScheduleCreateRequestDto;
+import com.example.schedule_v2.dto.request.ScheduleUpdateRequestDto;
 import com.example.schedule_v2.dto.response.ScheduleCreateResponseDto;
 import com.example.schedule_v2.dto.response.ScheduleReadResponseDto;
+import com.example.schedule_v2.dto.response.ScheduleUpdateResponseDto;
 import com.example.schedule_v2.entity.Schedule;
 import com.example.schedule_v2.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
@@ -77,4 +79,7 @@ public class ScheduleService {
         // 반환
         return scheduleDto;
     }
+    // 수정
+    @Transactional
+    public ScheduleUpdateResponseDto updateSchedule(Long id, ScheduleUpdateRequestDto requestDto) {}
 }
